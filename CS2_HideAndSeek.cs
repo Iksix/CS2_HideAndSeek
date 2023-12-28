@@ -130,6 +130,8 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         }
         RespawnPlayerTime = config.RespawnTime;
         SeekerHealth = config.SeekerHealth;
+        TwoSeekers = config.TwoSeekers;
+        ThreeSeekers = config.ThreeSeekers;
         Console.WriteLine("[HNS] Config parsed");
         Config = config;
     }
