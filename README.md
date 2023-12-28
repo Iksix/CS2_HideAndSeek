@@ -4,6 +4,7 @@ Functional: <br>
 -The actual immortality of the seeker <br>
 -2 languages: !lang ru and en <br>
 -Blocking the transition from team to team <br>
+-Respawn players at their death every second for n seconds (RespawnTime in config)<br><br>
 
 Setting up to 3 seekers example: <br>
 "TwoSeekers": 7 means that 2 out of 7 people on the server will search (Observers are not counted) (in config)
