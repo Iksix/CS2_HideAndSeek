@@ -13,6 +13,7 @@ The ability to change the tag, tag color, respawn time, hp from the seeker in th
 <h2>Commands:</h2>
 <code>css_row</code> - Enter/exit the queue for a seeker <br>
 <code>css_rowlist</code> - Check player in the queue<br>
+<code>css_hns_reload</code> - reload config<br>
 
 support ru and en lang check `lang`
 
