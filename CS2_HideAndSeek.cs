@@ -144,6 +144,8 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     [ConsoleCommand("css_hns_reload")]
     public void OnReloadCommand(CCSPlayerController? controller, CommandInfo info)
     {
+        if (controller != null) return;
+        
         OnConfigParsed(Config);
     }
 
