@@ -5,6 +5,7 @@ using CounterStrikeSharp.API.Core.Attributes.Registration;
 using CounterStrikeSharp.API.Modules.Admin;
 using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Config;
+using CounterStrikeSharp.API.Modules.Entities.Constants;
 using CounterStrikeSharp.API.Modules.Timers;
 using CounterStrikeSharp.API.Modules.Utils;
 using FormatWith;
@@ -44,7 +45,9 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     public int RespawnPlayerTime = 50; // players will respawn first 50 seconds after round starts
     public int SeekerHealth = 777; // <1000 pls
     public bool HnsMode = true; // 0 or 1
-    // ================================ /SETTINGS
+    public int FlashbangForCT = 1; // 0 or 1
+    public int SmokeForCT = 1; // 0 or 1
+    // ================================ SETTINGS
     
     public override string ModuleName => "HideAndSeek";
     public override string ModuleVersion => "1.0.0";
@@ -135,6 +138,8 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         TwoSeekers = config.TwoSeekers;
         ThreeSeekers = config.ThreeSeekers;
         HnsMode = config.HnsMode;
+        FlashbangForCT = config.FlashbangForCT;
+        SmokeForCT = config.SmokeForCT;
         Console.WriteLine("[HNS] Config parsed");
         Config = config;
     }
@@ -146,7 +151,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     
     //================================== Commands 
     
-    //========== hnsConsole
+    //========== hnsConsole - @css/root
     
     [ConsoleCommand("css_hns_reload")]
     public void OnReloadCommand(CCSPlayerController? controller, CommandInfo info)
@@ -157,6 +162,10 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
             {
                 return;
             }
+        }
+        if (controller != null)
+        {
+            controller.PrintToChat($" {PluginTagColor}{PluginTag} " + $"{Green}Config loaded!");
         }
         
         OnConfigParsed(Config);
@@ -176,6 +185,10 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         if (HnsMode)
         {
             Console.WriteLine($" {PluginTag} " + "HNS mode is already enabled");
+            if (controller != null)
+            {
+                controller.PrintToChat($" {PluginTagColor}{PluginTag} " + $"{Green}HNS mode is already enabled");
+            }
             return;
         }
 
@@ -207,6 +220,10 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         if (!HnsMode)
         {
             Console.WriteLine($" {PluginTag} " + "HNS mode is already disabled");
+            if (controller != null)
+            {
+                controller.PrintToChat($" {PluginTagColor}{PluginTag} " + $"{Red}HNS mode is already disabled");
+            }
             return;
         }
 
@@ -227,7 +244,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         NativeAPI.IssueServerCommand("sv_cheats 0");
     }
     
-    //========== /hnsConsole
+    //========== /hnsConsole - @css/root
     
     [ConsoleCommand("css_row")]
     public void OnRowCommand(CCSPlayerController? controller, CommandInfo info)
@@ -367,8 +384,8 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
 
             return HookResult.Continue;
         }
-        
-        _tPlayers.Add(Utilities.GetPlayers()[rnd.Next(0, Utilities.GetPlayers().Count)]);
+        int rnum = rnd.Next(0, Utilities.GetPlayers().Count);
+        _tPlayers.Add(Utilities.GetPlayers()[rnum]);
         foreach (var player in _tPlayers)
         {
             player.SwitchTeam(CsTeam.Terrorist);
@@ -392,6 +409,21 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         {
             if (player.PlayerPawn.Value != null)
                 player.PlayerPawn.Value.Health = SeekerHealth;
+        }
+
+        foreach (var player in players)
+        {
+            if (player.TeamNum == 3)
+            {
+                for (int i = 0; i < FlashbangForCT; i++)
+                {
+                    player.GiveNamedItem(CsItem.Flashbang);
+                }
+                for (int i = 0; i < SmokeForCT; i++)
+                {
+                    player.GiveNamedItem(CsItem.SmokeGrenade);
+                }
+            }
         }
 
         int counter = RespawnPlayerTime;

@@ -12,4 +12,6 @@ public class PluginConfig : BasePluginConfig
     [JsonPropertyName("TwoSeekers")] public int TwoSeekers { get; set; } = 7;
     [JsonPropertyName("ThreeSeekers")] public int ThreeSeekers { get; set; } = 10;
     [JsonPropertyName("HnsMode")] public bool HnsMode { get; set; } = true;
+    [JsonPropertyName("flashbangForCT")] public int FlashbangForCT { get; set; } = 1;
+    [JsonPropertyName("smokeForCT")] public int SmokeForCT { get; set; } = 1;
 }
