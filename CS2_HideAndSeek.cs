@@ -395,9 +395,35 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         }
 
         int counter = RespawnPlayerTime;
+        
+        bool hasAlivePlayers = false;
 
+        
+        
         _respawnTimer = AddTimer(1, () =>
         {
+
+            foreach (var player in players)
+            {
+                try
+                {
+                    if (player.PawnIsAlive)
+                    {
+                        hasAlivePlayers = true;
+                    }
+                }
+                catch
+                {
+                    return; 
+                }
+            }
+            
+            if (!hasAlivePlayers)
+            {
+                _respawnTimer.Kill();
+                _respawnTimer = null;
+                return;
+            }
             counter--;
             foreach (var player in players)
             {
@@ -428,13 +454,14 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         if (_respawnTimer != null)
         {
             _respawnTimer.Kill();
-            _respawnTimer = null; 
         }
+        _respawnTimer = null; 
         _tPlayers.Clear();
         _playersInRow.Clear();
         Console.WriteLine($" {PluginTag} Map Shutdown");
         return HookResult.Continue;
     }
+
     [GameEventHandler]
     public HookResult OnPlayerHurt(EventPlayerHurt @event, GameEventInfo info)
     {
