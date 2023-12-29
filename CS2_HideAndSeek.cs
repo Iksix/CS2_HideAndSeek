@@ -144,7 +144,9 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     }
     
     //================================== Commands 
+    
     //========== hnsConsole
+    
     [ConsoleCommand("css_hns_reload")]
     public void OnReloadCommand(CCSPlayerController? controller, CommandInfo info)
     {
@@ -161,6 +163,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         if (HnsMode)
         {
             Console.WriteLine($" {PluginTag} " + "HNS mode is already enabled");
+            return;
         }
 
         HnsMode = true;
@@ -175,17 +178,22 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         if (!HnsMode)
         {
             Console.WriteLine($" {PluginTag} " + "HNS mode is already disabled");
+            return;
         }
 
         HnsMode = true;
-        Console.WriteLine($" {PluginTag} " + Localizer["main.onHns"]);
+        Console.WriteLine($" {PluginTag} " + Localizer["main.offHns"]);
         Server.PrintToChatAll($" {PluginTagColor}{PluginTag} " + Localizer["main.offHns"]);
         
         _tPlayers.Clear();
         _playersInRow.Clear();
-        NativeAPI.
+        
+        NativeAPI.IssueServerCommand("sv_cheats 1");
+        NativeAPI.IssueServerCommand("endround");
+        NativeAPI.IssueServerCommand("sv_cheats 0");
     }
-    //========== hnsConsole
+    
+    //========== /hnsConsole
     
     [ConsoleCommand("css_row")]
     public void OnRowCommand(CCSPlayerController? controller, CommandInfo info)
