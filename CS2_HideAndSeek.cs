@@ -475,7 +475,10 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
                     player.PrintToChat($" {PluginTagColor}{PluginTag} " + Localizer["main.WhenRespawn"]);
                 }
 
-                player.PrintToCenter($" {PluginTagColor}{PluginTag} " + Localizer["main.RespawnTime"].ToString().FormatWith(new {seconds = counter}));
+                if (player.TeamNum != 2)
+                {
+                    player.PrintToCenter($" {PluginTagColor}{PluginTag} " + Localizer["main.RespawnTime"].ToString().FormatWith(new {seconds = counter}));
+                }
             }
             if (counter <= 0)
             {
