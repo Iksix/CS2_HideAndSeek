@@ -8,7 +8,7 @@
 - The ability to change the tag, tag color, respawn time, hp from the seeker in the config
 
 ### Setting up to 3 seekers example: <br>
-"TwoSeekers": 7 means that 2 out of 7 people on the server will search (Observers are not counted) (in config)
+`"TwoSeekers": 7` means that 2 out of 7 people on the server will search (Observers are not counted) (in config)
 
 ## Commands:
 <code>css_row</code> - Enter/exit the queue for a seeker 
