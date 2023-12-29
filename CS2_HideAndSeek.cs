@@ -2,6 +2,7 @@
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Core.Attributes.Registration;
+using CounterStrikeSharp.API.Modules.Admin;
 using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Config;
 using CounterStrikeSharp.API.Modules.Timers;
@@ -150,7 +151,13 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     [ConsoleCommand("css_hns_reload")]
     public void OnReloadCommand(CCSPlayerController? controller, CommandInfo info)
     {
-        if (controller != null) return;
+        if (controller != null)
+        {
+            if (!AdminManager.PlayerHasPermissions(controller, "@css/root"))
+            {
+                return;
+            }
+        }
         
         OnConfigParsed(Config);
     }
@@ -158,7 +165,13 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     [ConsoleCommand("css_hns")]
     public void OnHnsCommand(CCSPlayerController? controller, CommandInfo info)
     {
-        if (controller != null) return;
+        if (controller != null)
+        {
+            if (!AdminManager.PlayerHasPermissions(controller, "@css/root"))
+            {
+                return;
+            }
+        }
 
         if (HnsMode)
         {
@@ -183,7 +196,13 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     [ConsoleCommand("css_exithns")]
     public void OnExitHnsCommand(CCSPlayerController? controller, CommandInfo info)
     {
-        if (controller != null) return;
+        if (controller != null)
+        {
+            if (!AdminManager.PlayerHasPermissions(controller, "@css/root"))
+            {
+                return;
+            }
+        };
 
         if (!HnsMode)
         {
