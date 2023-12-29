@@ -1,0 +1,12 @@
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\bin\Debug\net7.0\CS2_HideAndSeek.deps.json
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\bin\Debug\net7.0\CS2_HideAndSeek.dll
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\bin\Debug\net7.0\CS2_HideAndSeek.pdb
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\CS2_HideAndSeek.csproj.AssemblyReference.cache
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\CS2_HideAndSeek.GeneratedMSBuildEditorConfig.editorconfig
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\CS2_HideAndSeek.AssemblyInfoInputs.cache
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\CS2_HideAndSeek.AssemblyInfo.cs
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\CS2_HideAndSeek.csproj.CoreCompileInputs.cache
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\CS2_HideAndSeek.dll
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\refint\CS2_HideAndSeek.dll
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\CS2_HideAndSeek.pdb
+D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\obj\Debug\net7.0\ref\CS2_HideAndSeek.dll

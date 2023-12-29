@@ -1,0 +1,7 @@
+{
+	"main.RespawnTime" : "Время респавна: {seconds} сек.",
+	"main.WhenRespawn" : "{green}Не время умирать!",
+	"main.onOutQueue" : "{red}Вы вышли из очереди!",
+	"main.onEnterQueue" : "{green}Вы вошли в очередь!!",
+	"main.onRowList" : "{green}Игроки в очереди:"
+}

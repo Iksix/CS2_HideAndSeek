@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CS2_HideAndSeek</id>
+    <version>1.0.0</version>
+    <authors>CS2_HideAndSeek</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net7.0">
+        <dependency id="CounterStrikeSharp.API" version="1.0.140" exclude="Build,Analyzers" />
+        <dependency id="FormatWith" version="2.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\__plgns\CS2_HideAndSeek\CS2_HideAndSeek\bin\Debug\net7.0\CS2_HideAndSeek.dll" target="lib\net7.0\CS2_HideAndSeek.dll" />
+  </files>
+</package>

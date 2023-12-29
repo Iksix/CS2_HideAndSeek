@@ -1,0 +1,29 @@
+//Colors:
+//Default
+//White
+//Darkred
+//Green
+//LightYellow
+//LightBlue
+//Olive
+//Lime
+//Red
+//Purple
+//Grey
+//Yellow
+//Gold
+//Silver
+//Blue
+//DarkBlue
+//BlueGrey
+//Magenta
+//LightRed
+{
+  "Tag": "[HNS]",
+  "TagColor": "Gold",
+  "RespawnTime": 50,
+  "SeekerHealth": 777,
+  "TwoSeekers": 7,
+  "ThreeSeekers": 10,
+  "ConfigVersion": 1
+}
