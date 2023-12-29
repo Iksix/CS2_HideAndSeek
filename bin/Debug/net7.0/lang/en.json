@@ -1,7 +1,0 @@
-{
-	"main.RespawnTime" : "Respawn time: {seconds} sec.",
-	"main.WhenRespawn" : "{green}It's not the time to die",
-	"main.onOutQueue" : "{red}You got out of the queue!",
-	"main.onEnterQueue" : "{green}You have entered the queue!",
-	"main.onRowList" : "{green}Players in the queue:"
-}

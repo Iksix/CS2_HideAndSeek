@@ -187,7 +187,11 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         
         _tPlayers.Clear();
         _playersInRow.Clear();
-        
+        if (_respawnTimer != null)
+        {
+            _respawnTimer.Kill();
+            _respawnTimer = null; 
+        }
         NativeAPI.IssueServerCommand("sv_cheats 1");
         NativeAPI.IssueServerCommand("endround");
         NativeAPI.IssueServerCommand("sv_cheats 0");
@@ -231,6 +235,8 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
 
     public HookResult OnJointeam(CCSPlayerController controller, CommandInfo info)
     {
+        if (!HnsMode) return HookResult.Continue;
+        
         if (controller.TeamNum == 2)
         {
             foreach (var player in _tPlayers)
@@ -259,6 +265,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     [GameEventHandler(HookMode.Pre)]
     public HookResult OnRoundEnd(EventRoundEnd @event, GameEventInfo info)
     {
+        if (!HnsMode) return HookResult.Continue;
         if (_respawnTimer != null)
         {
             _respawnTimer.Kill();
@@ -345,6 +352,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     [GameEventHandler]
     public HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
     {
+        if (!HnsMode) return HookResult.Continue;
         if (_respawnTimer != null)
         {
             _respawnTimer.Kill();
@@ -386,12 +394,21 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     [GameEventHandler]
     public HookResult OnMapShutdown(EventMapShutdown @event, GameEventInfo info)
     {
-        _respawnTimer = null; 
+        if (!HnsMode) return HookResult.Continue;
+        if (_respawnTimer != null)
+        {
+            _respawnTimer.Kill();
+            _respawnTimer = null; 
+        }
+        _tPlayers.Clear();
+        _playersInRow.Clear();
+        Console.WriteLine($" {PluginTag} Map Shutdown");
         return HookResult.Continue;
     }
     [GameEventHandler]
     public HookResult OnPlayerHurt(EventPlayerHurt @event, GameEventInfo info)
     {
+        if (!HnsMode) return HookResult.Continue;
         CCSPlayerController controller = @event.Userid;
         if (controller.TeamNum == 2)
         {
