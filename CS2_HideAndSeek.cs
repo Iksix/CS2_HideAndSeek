@@ -249,8 +249,13 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     [ConsoleCommand("css_row")]
     public void OnRowCommand(CCSPlayerController? controller, CommandInfo info)
     {
+        
         if (controller == null) return;
-
+        if (!HnsMode)
+        {
+            controller.PrintToChat($" {PluginTagColor}{PluginTag} {Red}HNS mode is disabled!");
+            return;
+        }
         for (int i = 0; i < _playersInRow.Count; i++)
         {
             if (_playersInRow[i] == controller)
@@ -269,7 +274,12 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     public void OnRowListCommand(CCSPlayerController? controller, CommandInfo info)
     {
         if (controller == null) return;
-
+        
+        if (!HnsMode)
+        {
+            controller.PrintToChat($" {PluginTagColor}{PluginTag} {Red}HNS mode is disabled!");
+            return;
+        }
         controller.PrintToChat($" {PluginTagColor}{PluginTag} " + Localizer["main.onRowList"]);
         foreach (var player in _playersInRow)
         {
