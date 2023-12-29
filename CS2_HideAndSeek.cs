@@ -169,6 +169,16 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         HnsMode = true;
         Console.WriteLine($" {PluginTag} " + Localizer["main.onHns"]);
         Server.PrintToChatAll($" {PluginTagColor}{PluginTag} " + Localizer["main.onHns"]);
+        _tPlayers.Clear();
+        _playersInRow.Clear();
+        if (_respawnTimer != null)
+        {
+            _respawnTimer.Kill();
+            _respawnTimer = null; 
+        }
+        NativeAPI.IssueServerCommand("sv_cheats 1");
+        NativeAPI.IssueServerCommand("endround");
+        NativeAPI.IssueServerCommand("sv_cheats 0");
     }
     [ConsoleCommand("css_exithns")]
     public void OnExitHnsCommand(CCSPlayerController? controller, CommandInfo info)
@@ -181,7 +191,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
             return;
         }
 
-        HnsMode = true;
+        HnsMode = false;
         Console.WriteLine($" {PluginTag} " + Localizer["main.offHns"]);
         Server.PrintToChatAll($" {PluginTagColor}{PluginTag} " + Localizer["main.offHns"]);
         
@@ -190,8 +200,9 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         if (_respawnTimer != null)
         {
             _respawnTimer.Kill();
-            _respawnTimer = null; 
+            
         }
+        _respawnTimer = null;
         NativeAPI.IssueServerCommand("sv_cheats 1");
         NativeAPI.IssueServerCommand("endround");
         NativeAPI.IssueServerCommand("sv_cheats 0");
@@ -272,7 +283,6 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
             _respawnTimer = null;
         }
         _tPlayers.Clear();
-        int playersCount = Utilities.GetPlayers().Count;
         List<CCSPlayerController> ctPlayers = new();
         List<CCSPlayerController> outRow = new();
         foreach (var player in Utilities.GetPlayers())
@@ -361,7 +371,8 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         var players = Utilities.GetPlayers();
         foreach (var player in _tPlayers)
         {
-            player.PlayerPawn.Value.Health = SeekerHealth;
+            if (player.PlayerPawn.Value != null)
+                player.PlayerPawn.Value.Health = SeekerHealth;
         }
 
         int counter = RespawnPlayerTime;
@@ -371,7 +382,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
             counter--;
             foreach (var player in players)
             {
-                if (player.TeamNum > 1 && player.PlayerPawn.Value.LifeState == 1)
+                if (player.TeamNum > 1 && player.PlayerPawn.Value != null && player.PlayerPawn.Value.LifeState == 1)
                 {
                     player.Respawn();
                     player.PrintToChat($" {PluginTagColor}{PluginTag} " + Localizer["main.WhenRespawn"]);
