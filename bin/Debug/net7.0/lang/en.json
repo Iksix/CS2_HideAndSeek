@@ -1,0 +1,11 @@
+{
+    "PluginTag": "{white}[{darkblue}HNS{white}]",
+    "RowEnter": "{green}You have entered the row!",
+    "RowLeave": "{red}You got out of the row!",
+    "Menu.EditRow": "Row Editor",
+    "Menu.Option.PlayersRow": "Players in row",
+    "Menu.Option.AddPlayerToRow": "Add a player to the row",
+    "Server.PlayerEnterRow": "{green}Player {darkblue}{name} {green}entered the row!",
+    "Server.PlayerLeaveRow": "{red}Player {darkblue}{name} {red}left the row!",
+    "RowList": "Players in row:"
+}

@@ -5,13 +5,12 @@ namespace CS2_HideAndSeek;
 
 public class PluginConfig : BasePluginConfig
 {
-    [JsonPropertyName("Tag")] public string Tag { get; set; } = "[HNS]";
-    [JsonPropertyName("TagColor")] public string TagColor { get; set; } = "Gold";
-    [JsonPropertyName("RespawnTime")] public int RespawnTime { get; set; } = 50;
-    [JsonPropertyName("SeekerHealth")] public int SeekerHealth { get; set; } = 777;
-    [JsonPropertyName("TwoSeekers")] public int TwoSeekers { get; set; } = 7;
-    [JsonPropertyName("ThreeSeekers")] public int ThreeSeekers { get; set; } = 10;
-    [JsonPropertyName("HnsMode")] public bool HnsMode { get; set; } = true;
-    [JsonPropertyName("flashbangForCT")] public int FlashbangForCT { get; set; } = 1;
-    [JsonPropertyName("smokeForCT")] public int SmokeForCT { get; set; } = 1;
+    [JsonPropertyName("RowEditFlag")] public string RowEditFlag { get; set; } = "@css/generic";
+    [JsonPropertyName("Maniacs")]
+    public Maniac[] Maniacs { get; set; } = new Maniac[]
+    {
+        // 1 по дефолту, то есть наичнаем с 2
+        new Maniac(2, 6),
+        new Maniac(3, 10)
+    };
 }
