@@ -137,9 +137,9 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
 
 
     [GameEventHandler(HookMode.Pre)]
-    public HookResult OnRoundPreStart(EventRoundPrestart @event, GameEventInfo info)
+    public HookResult OnRoundEnd(EventRoundEnd @event, GameEventInfo info)
     {
-
+        seekers.Clear();
         // Получаем нужное кол-во маньяков, и активных игроков(Те которые либо за КТ либо за Т)
         var ManiacsCfg = Config.Maniacs.OrderByDescending(x => x.ManiacCount);
         int needManiacs = 1;
@@ -156,7 +156,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
             }
         }
 
-        Random rnd = new Random();
+        Random rnd = new Random(DateTime.Now.Second + DateTime.Now.Minute + DateTime.Now.Year);
 
         // Пытаемся сначало заполнить сикеров игроками из очереди
         for (int i = 0; i < playersInRow.Count; i++)
