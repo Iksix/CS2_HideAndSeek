@@ -28,6 +28,18 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
 
     public override void Load(bool hotReload)
     {
+        RegisterListener<Listeners.OnTick>(() =>
+        {
+            var tPlayers = XHelper.GetOnlinePlayers().Where(p => p.TeamNum == 2).ToList();
+            foreach (var p in tPlayers)
+            {
+                if (p.PawnIsAlive)
+                {
+                    p.PlayerPawn!.Value!.Health = 777;
+                }
+            }
+        });
+
         AddCommandListener("jointeam", (p, commandInfo) =>
         {
             if (p == null) return HookResult.Continue;
@@ -43,6 +55,20 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
             return HookResult.Stop;
 
         }, HookMode.Pre);
+    }
+
+    [GameEventHandler]
+    public HookResult OnPlayerHurt(EventPlayerHurt @event, GameEventInfo info)
+    {
+        var player = @event.Userid;
+        if (player.TeamNum == 2)
+        {
+            if (player.PawnIsAlive)
+            {
+                player.PlayerPawn!.Value!.Health += @event.DmgHealth;
+            }
+        }
+        return HookResult.Continue;
     }
     [GameEventHandler]
     public HookResult OnMapShutDown(EventMapShutdown @event, GameEventInfo info)
@@ -109,8 +135,9 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
     }
 
 
+
     [GameEventHandler(HookMode.Pre)]
-    public HookResult OnRoundStart(EventRoundPrestart @event, GameEventInfo info)
+    public HookResult OnRoundPreStart(EventRoundPrestart @event, GameEventInfo info)
     {
 
         // Получаем нужное кол-во маньяков, и активных игроков(Те которые либо за КТ либо за Т)
