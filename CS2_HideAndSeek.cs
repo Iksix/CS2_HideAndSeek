@@ -18,7 +18,7 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
 {
 
     public override string ModuleName => "CS2_HideAndSeek";
-    public override string ModuleVersion => "1.0.0";
+    public override string ModuleVersion => "2.0.0";
     public override string ModuleAuthor => "iks";
 
     public PluginConfig Config { get; set; }
