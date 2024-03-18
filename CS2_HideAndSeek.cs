@@ -156,13 +156,13 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
             }
         }
 
-        Random rnd = new Random(DateTime.Now.Second + DateTime.Now.Minute + DateTime.Now.Year);
+        Random rnd = new Random((int)DateTimeOffset.UtcNow.ToUnixTimeSeconds());
 
         // Пытаемся сначало заполнить сикеров игроками из очереди
         for (int i = 0; i < playersInRow.Count; i++)
         {
-            if (seekers.Count() == needManiacs) continue; // Если их уже нужное кол-во просто скип
-            var addPlayer = playersInRow[rnd.Next(0, playersInRow.Count())];
+            if (seekers.Count == needManiacs) continue; // Если их уже нужное кол-во просто скип
+            var addPlayer = playersInRow[rnd.Next(0, playersInRow.Count)];
             seekers.Add(addPlayer);
             activePlayers.Remove(addPlayer); // Удаляем человека в сикерах из активных игроков
             playersInRow.Remove(addPlayer); // Удаляем человека в сикерах из очереди
@@ -172,12 +172,11 @@ public class CS2_HideAndSeek : BasePlugin, IPluginConfig<PluginConfig>
         for (int i = 0; i < activePlayers.Count; i++)
         {
             if (seekers.Count() == needManiacs) continue; // Если их уже нужное кол-во просто скип
-            var addPlayer = activePlayers[rnd.Next(0, playersInRow.Count())];
+            var addPlayer = activePlayers[rnd.Next(0, activePlayers.Count())];
             seekers.Add(addPlayer);
             activePlayers.Remove(addPlayer); // Удаляем человека в сикерах из активных игроков
         }
-
-
+        
         // Переносим игроков
         foreach (var p in activePlayers) // В КТ
         {

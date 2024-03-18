@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\__plgns\\CS2_HideAndSeek\\CS2_HideAndSeek\\CS2_HideAndSeek.csproj": {}
+    "/home/user/Documents/CS2_HideAndSeek/CS2_HideAndSeek.csproj": {}
   },
   "projects": {
-    "D:\\__plgns\\CS2_HideAndSeek\\CS2_HideAndSeek\\CS2_HideAndSeek.csproj": {
+    "/home/user/Documents/CS2_HideAndSeek/CS2_HideAndSeek.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\__plgns\\CS2_HideAndSeek\\CS2_HideAndSeek\\CS2_HideAndSeek.csproj",
+        "projectUniqueName": "/home/user/Documents/CS2_HideAndSeek/CS2_HideAndSeek.csproj",
         "projectName": "CS2_HideAndSeek",
-        "projectPath": "D:\\__plgns\\CS2_HideAndSeek\\CS2_HideAndSeek\\CS2_HideAndSeek.csproj",
-        "packagesPath": "C:\\Users\\iks\\.nuget\\packages\\",
-        "outputPath": "D:\\__plgns\\CS2_HideAndSeek\\CS2_HideAndSeek\\obj\\",
+        "projectPath": "/home/user/Documents/CS2_HideAndSeek/CS2_HideAndSeek.csproj",
+        "packagesPath": "/home/user/.nuget/packages/",
+        "outputPath": "/home/user/Documents/CS2_HideAndSeek/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\iks\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/user/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -58,12 +58,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.115/RuntimeIdentifierGraph.json"
         }
       }
     }
